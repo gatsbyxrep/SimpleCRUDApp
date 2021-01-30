@@ -1,0 +1,5 @@
+ru\gatsbyx\simplecrudapp\dao\PersonDAO.class
+ru\gatsbyx\simplecrudapp\models\Person.class
+ru\gatsbyx\simplecrudapp\config\DispatcherServletInitializer.class
+ru\gatsbyx\simplecrudapp\config\SpringConfig.class
+ru\gatsbyx\simplecrudapp\controllers\PeopleController.class
