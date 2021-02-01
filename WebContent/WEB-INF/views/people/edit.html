@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Edit person</title>
+	</head>
+	<body>
+		<form th:method = "PATCH" th:action = "@{/people/{id}(id = ${person.getId()})}" th:object = "${person}">
+			<label for = "name">Name: </label>
+			<input type = "text" th:field = "*{name}" id = "name"/>
+			<input type = "submit" value = "Edit"/>
+		</form>
+	</body>
+</html>

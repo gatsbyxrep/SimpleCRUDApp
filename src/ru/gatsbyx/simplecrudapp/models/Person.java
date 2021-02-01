@@ -9,6 +9,13 @@ public class Person {
 		this.name = name;
 	}
 	
+	public void copyFrom(Person person) {
+		this.id = person.id;
+		this.name = person.name;
+	}
+	
+	public Person() { }
+	
 	public int getId() {
 		return id;
 	}
