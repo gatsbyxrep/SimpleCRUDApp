@@ -1,7 +1,10 @@
 package ru.gatsbyx.simplecrudapp.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +21,7 @@ import ru.gatsbyx.simplecrudapp.models.Person;
 public class PeopleController {
 	
 	private PersonDAO personDAO;
+	
 	
 	public PeopleController(PersonDAO personDAO) {
 		this.personDAO = personDAO;
@@ -40,8 +44,13 @@ public class PeopleController {
 		return "people/new";
 	}
 	
-	@PostMapping("")
-	public String save(@ModelAttribute("person") Person person) {
+	@PostMapping()
+	public String save( @ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			System.out.println("Has errors");
+			return "people/new";
+		}
+		
 		personDAO.save(person);
 		return "redirect:/people";
 	}
@@ -53,7 +62,12 @@ public class PeopleController {
 	}
 	
 	@PatchMapping("/{id}")
-	public String patch(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+	public String patch(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id) {
+		if(bindingResult.hasErrors()) {
+			System.out.println("Has errors");
+			return "people/edit";
+		}
+		
 		personDAO.update(id, person);
 		return "redirect:/people";
 	}

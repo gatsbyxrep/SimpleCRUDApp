@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang = "en" xmlns:th = "http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Person</title>
 </head>
-<body>
-<p th:text = "${person.getId()}">value</p>
-<p th:text = "${person.getName()}">value</p>
-
-</body>
+	<body>
+		<p th:text = "${person.getId()}">value</p>
+		<p th:text = "${person.getName()}">value</p>
+		<p th:text = "${person.getAge()}">value</p>
+		<p th:text = "${person.getEmail()}">value</p>
+		<a th:href = "@{/people/{id}/edit(id = ${person.getId()})}">Click to open edit form</a>
+		
+		<form th:method ="DELETE" th:action = "@{/people/{id}(id = ${person.getId()})}">
+			<input type = "submit" value = "Delete"/>
+		</form>
+	</body>
 </html>
